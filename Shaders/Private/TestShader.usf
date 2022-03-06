@@ -1,0 +1,15 @@
+// Copyright Ben Sutherland 2022. All rights reserved.
+
+#include "/Engine/Public/Platform.ush"
+
+#ifndef THREADGROUPSIZE
+#define THREADGROUPSIZE 64
+#endif
+
+RWBuffer<int> TestUAV;
+
+[numthreads(THREADGROUPSIZE, 1, 1)]
+void MainCS(const uint ThreadID : SV_DispatchThreadID)
+{
+	TestUAV[ThreadID] = 1;
+}
